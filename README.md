@@ -58,3 +58,72 @@
 ## 6. HTTP запросы/ответы
 
 ## 7. Значимые фрагменты кода
+### Функции проверки регистрации и входа
+``` js
+function checkLogin() {
+        //Считываем сообщение из поля ввода
+        var login = $("#login").val();
+        // Отсылаем параметры
+        $.ajax({
+            type: "POST",
+            url: "register.php",
+            data: "login=" + login,
+            success: function (html) {
+                $("#check_login").html(html);
+                $("#login").val('');
+            }
+        });
+    }
+    function checkEnter() {
+        //Считываем сообщение из поля ввода
+        var logent = $("#logent").val();
+        // Отсылаем параметры
+        $.ajax({
+            type: "POST",
+            url: "login.php",
+            data: "login=" + logent,
+            success: function (html) {
+                $("#check_enter").html(html);
+                $("#logent").val('');
+                setTimeout(function(){
+                    window.location.href="index.php";
+                },2000);
+            }
+        });
+    }
+
+```
+### Функции загрузки чатов
+```js
+  function load_channels(){
+        $.ajax({
+            url: "load_chat.php",
+            type: "POST",
+            cache: false,
+            data: {"user": user},
+            dataType: "html",
+            success: function (data) {
+                if (channels_data != data) {
+                    channels_data = data;
+                    $("#channels").empty();
+                    $("#channels").append(data);
+                    $.ajax({
+                        url: "chat_check.php",
+                        type: "POST",
+                        cache: false,
+                        data: {"channel": active_channel, "user": user},
+                        dataType: "html",
+                        success: function(exist){
+                            if (exist == '1') {
+                                $("#" + active_channel).attr("disabled", true);
+                            }
+                            else{
+                                active_channel = null;
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+```
