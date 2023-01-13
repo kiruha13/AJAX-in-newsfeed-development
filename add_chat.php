@@ -12,10 +12,10 @@ if ($exist[0] == 1) {
 } else {
     $time = time() + 3 * 60 * 60;
     mysqli_query($db, "INSERT INTO channels (`id`, `chatname`, `type`, `login`, `messtime`) VALUES (NULL, '$name', '$type', '$creator', '$time')");
-    $new_channel = mysqli_fetch_row(mysqli_query($db, "SELECT * FROM channels WHERE `login` = '$creator'"));
+    $new_channel = mysqli_fetch_row(mysqli_query($db, "SELECT * FROM channels WHERE `chatname` = '$name'"));
     if ($type == 'private') {
         mysqli_query($db, "INSERT INTO permissions (`login`, `chatid`) VALUES ('$creator', '$new_channel[0]')");
     }
     echo 1;
 }
-
+?>

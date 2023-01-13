@@ -16,18 +16,19 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['id'])) {
     <div class="form">
         <form action="javascript:checkLogin();">
             <h3>Registartion</h3>
-            Login: <br> <input type="text" id="login" name="login">
+            Login: <input class="login" type="text" id="login" name="login">
             <br>
-            <input type="submit" id="done" value="Register">
-            <div id="check_login"></div>
+            <input class="logbtn" type="submit" id="done" value="Register">
+            <div class="check" id="check_login"></div>
         </form>
-
+    </div>
+    <div class="form1">
         <form action="javascript:checkEnter();">
             <h3>Enter</h3>
-            Login: <br> <input type="text" id="logent" name="login">
+            Login: <input class="login" type="text" id="logent" name="login">
             <br>
-            <input type="submit" value="Enter">
-            <div id="check_enter"></div>
+            <input class="logbtn" type="submit" value="Enter">
+            <div class="check" id="check_enter"></div>
         </form>
     </div>
     <?php
@@ -41,7 +42,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['id'])) {
     $user_data = mysqli_fetch_array($res);
 
     echo "<div class='chat-up'>";
-    echo "Your login: <b>" . $user_data['login'] . "</b><br>";
+    echo "Your login: <b>" . $user_data['login'] . "</b>";
     echo "<a href='exit.php'>Log out</a>";
     echo "</div>";
     include("chat.php");
@@ -77,7 +78,7 @@ if (isset($_SESSION['login']) && isset($_SESSION['id'])) {
                 $("#logent").val('');
                 setTimeout(function(){
                     window.location.href="index.php";
-                },2000);
+                },1000);
             }
         });
     }

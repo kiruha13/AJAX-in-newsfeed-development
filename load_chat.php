@@ -13,9 +13,10 @@ if (isset($channels)) {
         }
         else {
             $permission = mysqli_fetch_row(mysqli_query($db,"SELECT COUNT(*) FROM permissions WHERE `login` = '$user' AND chatid = '$channel[0]'"));
-            if ($permission[0] == 1 || $channel[2] == 'public') echo "<button type='button' class='btn btn-secondary' id='$channel[0]' name='$channel[1]' onclick='open_channel(`$channel[0]`)'> $channel[1] </button>";
+            if ($permission[0] == 1 || $channel[2] == 'public')
+                echo "<button type='button' class='btn' id='$channel[0]' name='$channel[1]' onclick='open_channel(`$channel[0]`)'> $channel[1] </button>";
         }
     }
-    echo "<button type='button' class='btn btn-secondary' id='add_channel' onclick='add_channel()'> + </button>";
+    echo "<button type='button' class='btn' id='add_channel' onclick='add_channel()'> + </button>";
 }
 ?>
