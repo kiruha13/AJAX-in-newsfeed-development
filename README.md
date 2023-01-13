@@ -12,7 +12,7 @@
 
 ## 2. Пользовательские сценарии работы
 
-Пользователь попадает на страницу *index.php*. Регистрируется или заходит под уже зарегистрированным именем. Если данные введены корректно, осуществляется подгрузка всей логики чата из файла *chat.php*. Есть возможность создать новый канал (приватный или публичный) или присоединиться к уже существующему каналу, где можно отправлять сообщения. Также можно выйти со страницы *chat.php* c помощью кнопки *Выход*, при нажании на которую пользователь переходит на страницу *index.php* с регистрацией и входом.
+Пользователь попадает на страницу *index.php*. Регистрируется или заходит под уже зарегистрированным именем. Если данные введены корректно, осуществляется подгрузка всей логики чата из файла *chat.php*. Есть возможность создать новый канал (приватный или публичный) или присоединиться к уже существующему каналу, где можно отправлять сообщения. Также можно выйти со страницы *index.php* c помощью кнопки *Выход*, при нажании на которую пользователь переходит на страницу *index.php* с регистрацией и входом.
 
 ## 3. API сервера и хореография
 
@@ -78,6 +78,50 @@
 <br>Server: Apache/2.4.54 (Win64) PHP/8.1.10
 <br>X-Powered-By: PHP/8.1.10
 
+### Проверка логина
+<br>POST /chat_src/login.php HTTP/1.1
+<br>Host: localhost
+<br>Accept: */*
+<br>Content-Type: application/x-www-form-urlencoded
+<br>sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+<br>sec-ch-ua-mobile: ?0
+<br>sec-ch-ua-platform: "Windows"
+<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+<br>X-Requested-With: XMLHttpRequest
+
+<br>HTTP/1.1 200 OK
+<br>Cache-Control: no-store, no-cache, must-revalidate
+<br>Connection: Keep-Alive
+<br>Content-Length: 0
+<br>Content-Type: text/html; charset=UTF-8
+<br>Date: Fri, 13 Jan 2023 17:54:23 GMT
+<br>Expires: Thu, 19 Nov 1981 08:52:00 GMT
+<br>Keep-Alive: timeout=5, max=100
+<br>Pragma: no-cache
+<br>Server: Apache/2.4.54 (Win64) PHP/8.1.10
+<br>X-Powered-By: PHP/8.1.10
+
+### Добавление канала
+
+<br>POST /chat_src/add_chat.php HTTP/1.1
+<br>Host: localhost
+<br>Accept: text/html, */*
+<br>Content-Type: application/x-www-form-urlencoded
+<br>sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+<br>sec-ch-ua-mobile: ?0
+<br>sec-ch-ua-platform: "Windows"
+<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+<br>X-Requested-With: XMLHttpRequest
+
+<br>HTTP/1.1 200 OK
+<br>Connection: Keep-Alive
+<br>Content-Length: 1
+<br>Content-Type: text/html; charset=UTF-8
+<br>Date: Fri, 13 Jan 2023 17:56:50 GMT
+<br>Keep-Alive: timeout=5, max=100
+<br>Server: Apache/2.4.54 (Win64) PHP/8.1.10
+<br>X-Powered-By: PHP/8.1.10
+
 ## 7. Значимые фрагменты кода
 ### Функции проверки регистрации и входа
 ``` js
@@ -116,7 +160,7 @@ function checkLogin() {
 ```
 ### Функции загрузки чатов
 ```js
-  function load_channels(){
+  function loadchats(){
         $.ajax({
             url: "load_chat.php",
             type: "POST",
@@ -124,22 +168,22 @@ function checkLogin() {
             data: {"user": user},
             dataType: "html",
             success: function (data) {
-                if (channels_data != data) {
-                    channels_data = data;
-                    $("#channels").empty();
-                    $("#channels").append(data);
+                if (chats_data != data) {
+                    chats_data = data;
+                    $("#chats").empty();
+                    $("#chats").append(data);
                     $.ajax({
                         url: "chat_check.php",
                         type: "POST",
                         cache: false,
-                        data: {"channel": active_channel, "user": user},
+                        data: {"chat": opened_chat, "user": user},
                         dataType: "html",
                         success: function(exist){
                             if (exist == '1') {
-                                $("#" + active_channel).attr("disabled", true);
+                                $("#" + opened_chat).attr("disabled", true);
                             }
                             else{
-                                active_channel = null;
+                                opened_chat = null;
                             }
                         }
                     });
