@@ -1,0 +1,107 @@
+body{
+    background: #0d3241;
+}
+.form{
+    text-align: center;
+    color: #d9dae1;
+    font-family: 'Raleway',sans-serif;
+    width: 70%;
+    margin: auto;
+    border: 5px solid #093760;
+    font-size: 25px;
+    filter: drop-shadow(5px 5px 5px #09558d);
+}
+.form1{
+    text-align: center;
+    color: #d9dae1;
+    font-family: 'Raleway',sans-serif;
+    width: 70%;
+    margin: auto;
+    border: 5px solid #093760;
+    font-size: 25px;
+    margin-top: 10px;
+    filter: drop-shadow(5px 5px 5px #09558d);
+}
+.chat-up{
+    text-align: center;
+    color: #d9dae1;
+    font-family: 'Raleway',sans-serif;
+}
+.chatmess
+{
+    color: #d9dae1;
+    width:600px;
+    margin: auto;
+    overflow:auto;
+    border:5px solid #051e2d;
+    border-radius: 7px;
+    background-image: url("../img/fon.jpg");
+    background-size: cover;
+    font-family: 'Raleway',sans-serif;
+}
+.word{
+    margin-top: 5px;
+    background: #095654;
+    width: 70%;
+    border-radius: 7px;
+    padding: 5px;
+    border: 3px solid black;
+    font-family: 'Raleway',sans-serif;
+}
+.check{
+    padding: 10px;
+    color: red;
+}
+.logbtn {
+    margin-top: 5px;
+    background-color: black;
+    color: #d9dae1;
+    font-size: 25px;
+    font-family: 'Raleway',sans-serif;
+}
+.login{
+    width: 70%;
+    margin: auto;
+    border: 5px solid #000000;
+    font-size: 25px;
+    font-family: 'Raleway',sans-serif;
+}
+a{
+    margin: 15px;
+    border: 3px solid #000000; /* Рамка */
+    padding: 5px 5px; /* Поля */
+    text-decoration: none; /* Убираем подчёркивание */
+    color: #000; /* Цвет текста */
+}
+a:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #117f98, #053d52); /* Градиент */
+    color: #a00;
+}
+.btn{
+    border: 3px solid #095654;
+    border-radius: 20px;
+    margin: 5px;
+    color: #d9dae1;
+    background-color: black;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+.msg{
+    border: 3px solid #095654;
+    border-radius: 5px;
+    background-color: #3b3939;
+    color: #d9dae1;
+    margin: auto;
+    width: 70%;
+    font-size: 20px;
+}
+.sendmsg{
+    background-color: black;
+    color: white;
+    border: 3px solid #095654;
+    border-radius: 5px;
+    margin: auto;
+    font-size: 20px;
+    padding: 1px 15px;
+}
