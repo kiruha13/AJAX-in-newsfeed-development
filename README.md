@@ -54,7 +54,8 @@
 | **login** | VARCHAR | 40 | - | имя пользователя |
 
 ## 5. Алгоритмы
-
+[Создание нового чата](https://imgur.com/a/NtRkMxa)
+[Приватный чат](https://imgur.com/a/sJEAJX9)
 ## 6. HTTP запросы/ответы
 ### Начальная страница
 <br>GET /chat_src/index.php HTTP/1.1
